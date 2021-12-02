@@ -27,9 +27,9 @@ struct NatGraph {
     int* vertices_colors;
 };
 struct FoundIsomorphisms {
-    long number_of_isos;
+    int number_of_isos;
     int** isos;
 };
 extern int is_igraph_thread_safe();
-extern struct FoundIsomorphisms* get_all_subisos(struct NatGraph,struct NatGraph,int);
+extern struct FoundIsomorphisms* get_all_subisos(struct NatGraph*,struct NatGraph*,int);
 #endif //NETGRAPH_NATIVE_LIBRARY_H
