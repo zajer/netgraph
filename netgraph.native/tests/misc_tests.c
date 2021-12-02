@@ -11,7 +11,7 @@ int main(int argc, const char *argv[])
     return result;
 }
 
-CTEST(suite1, test1){
+CTEST(unflatten_array, test1){
     int f_array[] = {2,96,44,2,75,92};
     int expected_array[2][3] = { {2,96,44},{2,75,92} };
     int i,j;
@@ -22,7 +22,7 @@ CTEST(suite1, test1){
     free(uf_array);
 }
 
-CTEST(suite1, test2){
+CTEST(unflatten_array, test2){
     int f_array[] = {2,96,44,2,75,92};
     int expected_array[2][3] = { {2,97,44},{2,75,92} }; //the difference is intended, this test is expected to fail
     int i,j;
@@ -36,7 +36,7 @@ CTEST(suite1, test2){
     free(uf_array);
 }
 
-CTEST(suite2, test1){
+CTEST(unflatten_array, test3){
     int f_array[] = {3,333,444,11,2,71,95};
     
     int **expected_array = malloc (2 * sizeof(int*));
@@ -71,7 +71,7 @@ CTEST(suite2, test1){
     free(expected_array);
 }
 
-CTEST(suite2, test2){
+CTEST(unflatten_array, test4){
     int f_array[] = {3,35,42,11,0,2,71,92};
     
     int **expected_array = malloc (3 * sizeof(int*));
@@ -115,7 +115,7 @@ CTEST(suite2, test2){
     free(expected_array);
 }
 
-CTEST(suite2, test3){
+CTEST(unflatten_array, test5){
     int f_array[] = {3,35,42,11,1,15,2,71,92};
     
     int **expected_array = malloc (3 * sizeof(int*));
