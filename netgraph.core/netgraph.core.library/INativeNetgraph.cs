@@ -1,9 +1,12 @@
-using System;
-
 namespace netgraph.core.library
 {
-    public interface INativeNetgraph
+    internal interface INativeNetgraph
     {
         int IsIgraphThreadSafe();
+        FoundIsomorphisms GetAllIsomorphisms(
+            NatGraph target,
+            NatGraph pattern,
+            int are_graphs_directed
+            );
     }
 }
