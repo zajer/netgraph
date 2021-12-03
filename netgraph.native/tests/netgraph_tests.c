@@ -47,36 +47,36 @@ void construct_pattern_graph_for_test1(struct NatGraph *graph){
 }
 
 CTEST(all_subiso_suite,no_colors_not_directed){
-    struct FoundIsomorphisms *result;
+    struct FoundIsomorphisms result;
     struct NatGraph *target = malloc (sizeof( struct NatGraph ));
     struct NatGraph *pattern = malloc (sizeof( struct NatGraph ));
     int expected_number_of_isos = 4;
     construct_target_graph_for_test1(target);
     construct_pattern_graph_for_test1(pattern);
-    result = get_all_subisos(target,pattern,0);
-    ASSERT_EQUAL(expected_number_of_isos,result->number_of_isos);
+    result = get_all_subisos(*target,*pattern,0);
+    ASSERT_EQUAL(expected_number_of_isos,result.number_of_isos);
     free(target->adjacency_data);
     free(pattern->adjacency_data);
     for(int i=0;i<expected_number_of_isos;i++)
-        free(result->isos[i]);
-    free(result->isos);
-    free(result);
+        free(result.isos[i]);
+    free(result.isos);
+    //free(result);
 }
 CTEST(all_subiso_suite,no_colors_directed){
-    struct FoundIsomorphisms *result;
+    struct FoundIsomorphisms result;
     struct NatGraph *target = malloc (sizeof( struct NatGraph ));
     struct NatGraph *pattern = malloc (sizeof( struct NatGraph ));
     int expected_number_of_isos = 2;
     construct_target_graph_for_test1(target);
     construct_pattern_graph_for_test1(pattern);
-    result = get_all_subisos(target,pattern,1);
-    ASSERT_EQUAL(expected_number_of_isos,result->number_of_isos);
+    result = get_all_subisos(*target,*pattern,1);
+    ASSERT_EQUAL(expected_number_of_isos,result.number_of_isos);
     free(target->adjacency_data);
     free(pattern->adjacency_data);
     for(int i=0;i<expected_number_of_isos;i++)
-        free(result->isos[i]);
-    free(result->isos);
-    free(result);
+        free(result.isos[i]);
+    free(result.isos);
+    //free(result);
 }
 
 void color_target_graph_for_test3(struct NatGraph *graph){
@@ -97,7 +97,7 @@ void color_pattern_graph_for_test3(struct NatGraph *graph){
 }
 
 CTEST(all_subiso_suite,colors_not_directed){
-    struct FoundIsomorphisms *result;
+    struct FoundIsomorphisms result;
     struct NatGraph *target = malloc (sizeof( struct NatGraph ));
     struct NatGraph *pattern = malloc (sizeof( struct NatGraph ));
     int expected_number_of_isos = 2;
@@ -105,19 +105,19 @@ CTEST(all_subiso_suite,colors_not_directed){
     construct_pattern_graph_for_test1(pattern);
     color_target_graph_for_test3(target);
     color_pattern_graph_for_test3(pattern);
-    result = get_all_subisos(target,pattern,0);
-    ASSERT_EQUAL(expected_number_of_isos,result->number_of_isos);
+    result = get_all_subisos(*target,*pattern,0);
+    ASSERT_EQUAL(expected_number_of_isos,result.number_of_isos);
     free(target->adjacency_data);
     free(target->vertices_colors);
     free(pattern->adjacency_data);
     free(pattern->vertices_colors);
     for(int i=0;i<expected_number_of_isos;i++)
-        free(result->isos[i]);
-    free(result->isos);
-    free(result);
+        free(result.isos[i]);
+    free(result.isos);
+    //free(result);
 }
 CTEST(all_subiso_suite,colors_directed){
-    struct FoundIsomorphisms *result;
+    struct FoundIsomorphisms result;
     struct NatGraph *target = malloc (sizeof( struct NatGraph ));
     struct NatGraph *pattern = malloc (sizeof( struct NatGraph ));
     int expected_number_of_isos = 1;
@@ -125,14 +125,14 @@ CTEST(all_subiso_suite,colors_directed){
     construct_pattern_graph_for_test1(pattern);
     color_target_graph_for_test3(target);
     color_pattern_graph_for_test3(pattern);
-    result = get_all_subisos(target,pattern,1);
-    ASSERT_EQUAL(expected_number_of_isos,result->number_of_isos);
+    result = get_all_subisos(*target,*pattern,1);
+    ASSERT_EQUAL(expected_number_of_isos,result.number_of_isos);
     free(target->adjacency_data);
     free(target->vertices_colors);
     free(pattern->adjacency_data);
     free(pattern->vertices_colors);
     for(int i=0;i<expected_number_of_isos;i++)
-        free(result->isos[i]);
-    free(result->isos);
-    free(result);
+        free(result.isos[i]);
+    free(result.isos);
+    //free(result);
 }
