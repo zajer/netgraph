@@ -4,10 +4,32 @@
     <TargetFramework>net5.0</TargetFramework>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
+  
   <ItemGroup>
     <None Include="native\linux-x64\libNetgraphNative.so" Pack="true" PackagePath=".\">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <PackageCopyToOutput>true</PackageCopyToOutput>
     </None>
   </ItemGroup>
+
+  <Target Name="Generating files from the tt template" BeforeTargets="BeforeBuild">
+    <Message Text="Generating native functionality provider classes from template." Importance="high"></Message>
+    <Exec WorkingDirectory="$(ProjectDir)" Command="t4 NativeProvidersTemplate.tt -o NativeProviders.Generated.cs" Outputs="NativeProviders.Generated.cs">
+      <Output ItemName="Generated" TaskParameter="Outputs" />
+    </Exec>
+    <ItemGroup>
+      <Compile Include="@(Generated)" />
+    </ItemGroup>
+  </Target>
+
+  <Target Name="Deleting files generated during build" AfterTargets="Clean">
+    <ItemGroup>
+      <FilesToDelete Include="*.Generated.cs"/>
+    </ItemGroup>
+    <Message Text="Deleting files"/>
+    <Delete Files="@(FilesToDelete)" >
+      <Output TaskParameter="DeletedFiles" ItemName="DeletedList"/>
+    </Delete>
+  </Target>
+
 </Project>

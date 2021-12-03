@@ -7,7 +7,7 @@ namespace netgraph.core.library
         public INetgraph GetNetgraphProvider(){
             INativeNetgraph nativeImpl;
             if (RuntimeInformation.IsOSPlatform(OSPlatform.Linux) && System.Environment.Is64BitOperatingSystem)
-                nativeImpl = new NetgraphLinux64();  
+                nativeImpl = new Linux64NativeProvider();  
             else
                 throw new NotImplementedException();
             
