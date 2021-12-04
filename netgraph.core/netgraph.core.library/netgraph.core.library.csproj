@@ -18,7 +18,8 @@
       <Output ItemName="Generated" TaskParameter="Outputs" />
     </Exec>
     <ItemGroup>
-      <Compile Include="@(Generated)" />
+      <Compile  Include="@(Generated)" 
+                Exclude="$(DefaultItemExcludes);$(DefaultExcludesInProjectFolder);$(BaseIntermediateOutputPath)**;$(BaseOutputPath)**;@(Compile)" />
     </ItemGroup>
   </Target>
 
@@ -26,7 +27,6 @@
     <ItemGroup>
       <FilesToDelete Include="*.Generated.cs"/>
     </ItemGroup>
-    <Message Text="Deleting files"/>
     <Delete Files="@(FilesToDelete)" >
       <Output TaskParameter="DeletedFiles" ItemName="DeletedList"/>
     </Delete>
