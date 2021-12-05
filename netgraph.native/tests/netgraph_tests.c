@@ -1,7 +1,9 @@
 #include "../src/netgraph.h"
 
 #define CTEST_MAIN
-#define CTEST_SEGFAULT
+#ifndef WIN32 //there is no signal.h with kill(pid_t,int) on Windows :(
+    #define CTEST_SEGFAULT
+#endif
 #define CTEST_COLOR_OK
 #include "ctest.h"
 

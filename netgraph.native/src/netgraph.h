@@ -1,22 +1,6 @@
 #ifndef NETGRAPH_NATIVE_LIBRARY_H
 #define NETGRAPH_NATIVE_LIBRARY_H
-/*
-#if defined DLL_EXPORTS
-    #if defined WIN32
-        #define LIB_API(RetType) extern __declspec(dllexport) RetType
-    #else
-        #define LIB_API(RetType) extern RetType __attribute__((visibility("default")))
-    #endif
-#else
-    #if defined WIN32
-        #define LIB_API(RetType) extern __declspec(dllimport) RetType
-    #else
-        #define LIB_API(RetType) extern RetType
-    #endif
-#endif
 
-LIB_API(void) hello();
-*/
 struct NatGraph {
     int number_of_vertices;
     int* adjacency_data; 
@@ -30,6 +14,39 @@ struct FoundIsomorphisms {
     int number_of_isos;
     int** isos;
 };
-extern int is_igraph_thread_safe();
-extern struct FoundIsomorphisms get_all_subisos(struct NatGraph,struct NatGraph,int);
-#endif //NETGRAPH_NATIVE_LIBRARY_H
+#define LIB_API_PREFIX_win_export() extern __declspec(dllexport)
+#define LIB_API_PREFIX_win_import() extern __declspec(dllimport)
+#define LIB_API_PREFIX_win(export_import) LIB_API_PREFIX_win_##export_import()
+#define LIB_API_PREFIX_unix(export_import) extern
+
+#define LIB_API_SUFFIX_win() 
+#define LIB_API_SUFFIX_unix() __attrubte__((visibility("default")))
+
+#define LIB_API(platform,export_import) \
+	LIB_API_PREFIX_##platform(export_import) int LIB_API_SUFFIX_##platform() is_igraph_thread_safe(); \
+    LIB_API_PREFIX_##platform(export_import) struct FoundIsomorphisms LIB_API_SUFFIX_##platform() get_all_subisos(struct NatGraph,struct NatGraph,int); 
+
+
+#if defined LIB_COMPILATION
+    #if defined WIN32
+        LIB_API(win,export)       
+        //extern __declspec(dllexport) int is_igraph_thread_safe();
+        //extern __declspec(dllexport) struct FoundIsomorphisms get_all_subisos(struct NatGraph,struct NatGraph,int);
+    #else
+        LIB_API(unix,export)
+        //extern int __attrubte__((visibility("default"))) is_igraph_thread_safe();
+        //extern  struct FoundIsomorphisms __attrubte__((visibility("default"))) get_all_subisos(struct NatGraph,struct NatGraph,int);
+    #endif
+#else
+    #if defined WIN32
+        LIB_API(win,import)
+        //extern __declspec(dllimport) int is_igraph_thread_safe();
+        //extern __declspec(dllimport) struct FoundIsomorphisms get_all_subisos(struct NatGraph,struct NatGraph,int);
+    #else
+        LIB_API(unix,import)
+        //extern int is_igraph_thread_safe();
+        //extern struct FoundIsomorphisms get_all_subisos(struct NatGraph,struct NatGraph,int);
+    #endif
+#endif
+
+#endif
