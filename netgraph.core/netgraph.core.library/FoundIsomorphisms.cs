@@ -1,4 +1,5 @@
-namespace netgraph.core.library {
+namespace Netgraph.Core.Library
+{
     internal unsafe struct FoundIsomorphisms
     {
         public int number_of_isos { get; init; }

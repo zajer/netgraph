@@ -1,5 +1,5 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using netgraph.core.library;
+using Netgraph.Core.Library;
 namespace netgraph.core.tests
 {
     [TestClass]

@@ -1,5 +1,5 @@
 using System;
-namespace netgraph.core.library
+namespace Netgraph.Core.Library
 {
     public struct Graph {
         public int[][] Adjacency {get; init;}

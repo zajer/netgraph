@@ -1,4 +1,4 @@
-namespace netgraph.core.library
+namespace Netgraph.Core.Library
 {
     internal unsafe struct NatGraph {
         public int number_of_vertices { get; set;}

@@ -1,7 +1,7 @@
 using System.Runtime.CompilerServices;
 
 [assembly:InternalsVisibleTo("Netgraph.Core.Tests")]
-namespace netgraph.core.library
+namespace Netgraph.Core.Library
 {
     
     internal static class Utils {

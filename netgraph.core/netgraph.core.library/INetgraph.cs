@@ -1,4 +1,4 @@
-namespace netgraph.core.library
+namespace Netgraph.Core.Library
 {
     public interface INetgraph
     {

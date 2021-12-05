@@ -1,6 +1,6 @@
 using System;
 using System.Runtime.InteropServices;
-namespace netgraph.core.library
+namespace Netgraph.Core.Library
 {
     public class Factory
     {
