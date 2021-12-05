@@ -10,6 +10,14 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <PackageCopyToOutput>true</PackageCopyToOutput>
     </None>
+    <None Include="native\windows-x64\libNetgraphNative.dll" Pack="true" PackagePath=".\">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <PackageCopyToOutput>true</PackageCopyToOutput>
+    </None>
+    <None Include="native\windows-x64\libigraph.dll" Pack="true" PackagePath=".\">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <PackageCopyToOutput>true</PackageCopyToOutput>
+    </None>
   </ItemGroup>
 
   <Target Name="Generating files from the tt template" BeforeTargets="BeforeBuild">

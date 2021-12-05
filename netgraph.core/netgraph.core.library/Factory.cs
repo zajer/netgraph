@@ -8,6 +8,8 @@ namespace netgraph.core.library
             INativeNetgraph nativeImpl;
             if (RuntimeInformation.IsOSPlatform(OSPlatform.Linux) && System.Environment.Is64BitOperatingSystem)
                 nativeImpl = new Linux64NativeProvider();  
+            else if(RuntimeInformation.IsOSPlatform(OSPlatform.Windows) && System.Environment.Is64BitOperatingSystem)
+                nativeImpl = new Windows64NativeProvider();  
             else
                 throw new NotImplementedException();
             

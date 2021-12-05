@@ -33,6 +33,6 @@ namespace netgraph.core.library {
     <# } #>
 }
 <#+
-string[] Platforms = new string[] { "Linux64" };
-string[] Libraries = new string[] { "native/linux-x64/libNetgraphNative.so" };
+string[] Platforms = new string[] { "Linux64","Windows64" };
+string[] Libraries = new string[] { "native/linux-x64/libNetgraphNative.so","native/windows-x64/libNetgraphNative.dll" };
 #>
