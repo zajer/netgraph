@@ -52,5 +52,5 @@ namespace Netgraph.Core.Library
 }
 <#+
 string[] Platforms = new string[] { "Linux64","Windows64" };
-string[] Libraries = new string[] { "native/linux-x64/libNetgraphNative.so","native/windows-x64/libNetgraphNative.dll" };
+string[] Libraries = new string[] { "runtimes\\linux-x64\\native\\libNetgraphNative.so","runtimes\\win-x64\\native\\libNetgraphNative.dll" };
 #>

@@ -1,20 +1,23 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
+    <PackageId>Netgraph</PackageId>
+    <Authors>Piotr Cybulski</Authors>
+    <PackageVersion>1.0.0</PackageVersion>
     <TargetFramework>net5.0</TargetFramework>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
   
   <ItemGroup>
-    <None Include="native\linux-x64\libNetgraphNative.so" Pack="true" PackagePath=".\">
+    <None Include="runtimes\linux-x64\native\libNetgraphNative.so" Pack="true" PackagePath="runtimes\linux-x64\native\">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <PackageCopyToOutput>true</PackageCopyToOutput>
     </None>
-    <None Include="native\windows-x64\libNetgraphNative.dll" Pack="true" PackagePath=".\">
+    <None Include="runtimes\win-x64\native\libNetgraphNative.dll" Pack="true" PackagePath="runtimes\win-x64\native\">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <PackageCopyToOutput>true</PackageCopyToOutput>
     </None>
-    <None Include="native\windows-x64\libigraph.dll" Pack="true" PackagePath=".\">
+    <None Include="runtimes\win-x64\native\libigraph.dll" Pack="true" PackagePath="runtimes\win-x64\native\">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <PackageCopyToOutput>true</PackageCopyToOutput>
     </None>
