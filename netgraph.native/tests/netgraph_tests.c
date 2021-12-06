@@ -187,6 +187,21 @@ CTEST(all_isos_suite,no_colors_not_directed){
         free(result.isos[i]);
     free(result.isos);
 }
+CTEST(all_isos_suite,no_colors_not_directed_test2){
+    struct FoundIsomorphisms result;
+    struct NatGraph *target = malloc (sizeof( struct NatGraph ));
+    struct NatGraph *pattern = malloc (sizeof( struct NatGraph ));
+    int expected_number_of_isos = 0;
+    construct_target_graph_for_iso_test1(target);
+    construct_pattern_graph_for_subiso_test1(pattern);
+    result = get_all_isos(*target,*pattern,0);
+    ASSERT_EQUAL(expected_number_of_isos,result.number_of_isos);
+    free(target->adjacency_data);
+    free(pattern->adjacency_data);
+    for(int i=0;i<expected_number_of_isos;i++)
+        free(result.isos[i]);
+    free(result.isos);
+}
 CTEST(all_isos_suite,no_colors_directed){
     struct FoundIsomorphisms result;
     struct NatGraph *target = malloc (sizeof( struct NatGraph ));
