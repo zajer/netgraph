@@ -20,7 +20,7 @@ struct FoundIsomorphisms {
 #define LIB_API_PREFIX_unix(export_import) extern
 
 #define LIB_API_SUFFIX_win() 
-#define LIB_API_SUFFIX_unix() __attrubte__((visibility("default")))
+#define LIB_API_SUFFIX_unix() __attribute__((visibility("default")))
 
 #define LIB_API(platform,export_import) \
 	LIB_API_PREFIX_##platform(export_import) int LIB_API_SUFFIX_##platform() is_igraph_thread_safe(); \
