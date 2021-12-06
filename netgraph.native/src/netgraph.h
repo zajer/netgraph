@@ -24,7 +24,8 @@ struct FoundIsomorphisms {
 
 #define LIB_API(platform,export_import) \
 	LIB_API_PREFIX_##platform(export_import) int LIB_API_SUFFIX_##platform() is_igraph_thread_safe(); \
-    LIB_API_PREFIX_##platform(export_import) struct FoundIsomorphisms LIB_API_SUFFIX_##platform() get_all_subisos(struct NatGraph,struct NatGraph,int); 
+    LIB_API_PREFIX_##platform(export_import) struct FoundIsomorphisms LIB_API_SUFFIX_##platform() get_all_subisos(struct NatGraph,struct NatGraph,int); \
+    LIB_API_PREFIX_##platform(export_import) struct FoundIsomorphisms LIB_API_SUFFIX_##platform() get_all_isos(struct NatGraph,struct NatGraph,int); 
 
 
 #if defined LIB_COMPILATION

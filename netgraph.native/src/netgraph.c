@@ -16,10 +16,22 @@
 int is_igraph_thread_safe(){
     return IGRAPH_THREAD_SAFE ;   
 }
-struct FoundIsomorphisms get_all_subisos(
+struct FoundIsomorphisms common_iso_routine(
         struct NatGraph target,
         struct NatGraph pattern,
-        int are_graphs_directed
+        int are_graphs_directed,
+        int (*iso_function)(
+            const igraph_t*,
+            const igraph_t*,
+            const igraph_vector_int_t*,
+            const igraph_vector_int_t*,
+            const igraph_vector_int_t*,
+            const igraph_vector_int_t*,
+            igraph_vector_ptr_t*,
+            igraph_isocompat_t*,
+            igraph_isocompat_t*,
+            void*
+        )
     ){
     igraph_t target_graph;
     igraph_vector_int_t *target_colors=NULL;
@@ -55,7 +67,7 @@ struct FoundIsomorphisms get_all_subisos(
         }
     }
     igraph_vector_ptr_init(&iso_maps,0);
-    int ec = igraph_get_subisomorphisms_vf2(
+    int ec = (*iso_function)(
   	            &target_graph,
   	            &pattern_graph,
                 target_colors,
@@ -92,4 +104,43 @@ struct FoundIsomorphisms get_all_subisos(
     }
     return result;
 }
-
+struct FoundIsomorphisms get_all_subisos(
+    struct NatGraph target,
+    struct NatGraph pattern,
+    int are_graphs_directed){
+        
+        int (*iso_function)(
+            const igraph_t*,
+            const igraph_t*,
+            const igraph_vector_int_t*,
+            const igraph_vector_int_t*,
+            const igraph_vector_int_t*,
+            const igraph_vector_int_t*,
+            igraph_vector_ptr_t*,
+            igraph_isocompat_t*,
+            igraph_isocompat_t*,
+            void*
+        );
+        iso_function = &igraph_get_subisomorphisms_vf2;
+        return common_iso_routine(target,pattern,are_graphs_directed,iso_function);
+    }
+struct FoundIsomorphisms get_all_isos(
+    struct NatGraph target,
+    struct NatGraph pattern,
+    int are_graphs_directed){
+        
+        int (*iso_function)(
+            const igraph_t*,
+            const igraph_t*,
+            const igraph_vector_int_t*,
+            const igraph_vector_int_t*,
+            const igraph_vector_int_t*,
+            const igraph_vector_int_t*,
+            igraph_vector_ptr_t*,
+            igraph_isocompat_t*,
+            igraph_isocompat_t*,
+            void*
+        );
+        iso_function = &igraph_get_isomorphisms_vf2;
+        return common_iso_routine(target,pattern,are_graphs_directed,iso_function);
+    }
