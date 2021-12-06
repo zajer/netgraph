@@ -30,22 +30,14 @@ struct FoundIsomorphisms {
 #if defined LIB_COMPILATION
     #if defined WIN32
         LIB_API(win,export)       
-        //extern __declspec(dllexport) int is_igraph_thread_safe();
-        //extern __declspec(dllexport) struct FoundIsomorphisms get_all_subisos(struct NatGraph,struct NatGraph,int);
     #else
         LIB_API(unix,export)
-        //extern int __attrubte__((visibility("default"))) is_igraph_thread_safe();
-        //extern  struct FoundIsomorphisms __attrubte__((visibility("default"))) get_all_subisos(struct NatGraph,struct NatGraph,int);
     #endif
 #else
     #if defined WIN32
         LIB_API(win,import)
-        //extern __declspec(dllimport) int is_igraph_thread_safe();
-        //extern __declspec(dllimport) struct FoundIsomorphisms get_all_subisos(struct NatGraph,struct NatGraph,int);
     #else
         LIB_API(unix,import)
-        //extern int is_igraph_thread_safe();
-        //extern struct FoundIsomorphisms get_all_subisos(struct NatGraph,struct NatGraph,int);
     #endif
 #endif
 
