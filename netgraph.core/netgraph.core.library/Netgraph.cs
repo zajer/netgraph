@@ -8,8 +8,9 @@ namespace Netgraph.Core.Library
         }
 
         public bool IsIgraphThreadSafe() { return _nativeProvider.IsIgraphThreadSafe() == 1 ? true : false; }
-        
-        public int[,] AllIsomorphisms (Graph target, Graph pattern, bool areGraphsDirected) {
+
+        private delegate FoundIsomorphisms NativeIsoFunction(NatGraph target,NatGraph pattern,int are_graphs_directed);
+        private int[,] CommonIsomorphismsRetrievingRoutine(Graph target, Graph pattern, bool areGraphsDirected,NativeIsoFunction isoFun){
             int[,] result;
             int[] flattenedTargetAdjacency = Utils.FlattenArrayOfArrays(target.Adjacency);
             int[] flattenedPatternAdjacency = Utils.FlattenArrayOfArrays(pattern.Adjacency);
@@ -29,7 +30,7 @@ namespace Netgraph.Core.Library
                         nativePattern.number_of_vertices = pattern.NumberOfVertices;
                         nativePattern.vertices_colors = nativePatternColors;
                         int nativeFlag = areGraphsDirected ? 1 : 0;
-                        FoundIsomorphisms nativeResult = _nativeProvider.GetAllIsomorphisms(nativeTarget,nativePattern,nativeFlag);
+                        FoundIsomorphisms nativeResult = isoFun(nativeTarget,nativePattern,nativeFlag);
                         result = new int[nativeResult.number_of_isos,pattern.NumberOfVertices];
                         for(int i=0;i<nativeResult.number_of_isos;i++)
                             for(int j=0;j<pattern.NumberOfVertices;j++)
@@ -38,6 +39,14 @@ namespace Netgraph.Core.Library
             }
             
             return result;
+        }
+        public int[,] AllSubIsomorphisms (Graph target, Graph pattern, bool areGraphsDirected) {
+            NativeIsoFunction isoFun = _nativeProvider.GetAllSubIsomorphisms;
+            return CommonIsomorphismsRetrievingRoutine(target,pattern,areGraphsDirected,isoFun);
+        }
+        public int[,] AllIsomorphisms (Graph target, Graph pattern, bool areGraphsDirected) {
+            NativeIsoFunction isoFun = _nativeProvider.GetAllIsomorphisms;
+            return CommonIsomorphismsRetrievingRoutine(target,pattern,areGraphsDirected,isoFun);
         }
     }
 }
