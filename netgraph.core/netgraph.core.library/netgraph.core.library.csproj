@@ -2,10 +2,21 @@
 
   <PropertyGroup>
     <PackageId>Netgraph</PackageId>
+    <Title>C# bindings to igraph</Title>
     <Authors>Piotr Cybulski</Authors>
     <PackageVersion>1.0.0</PackageVersion>
     <TargetFramework>net5.0</TargetFramework>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <PackageTags>graph igraph</PackageTags>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <Description>
+      A C# library providing a (small) subset of igraph library functionality.
+    </Description>
+    <PackageProjectUrl>https://github.com/zajer/netgraph.git</PackageProjectUrl> 
+    <RepositoryUrl>https://github.com/zajer/netgraph.git</RepositoryUrl> 
+    <RepositoryType>git</RepositoryType> 
+    <IncludeSymbols>true</IncludeSymbols>
+    <SymbolPackageFormat>snupkg</SymbolPackageFormat>
   </PropertyGroup>
   
   <ItemGroup>
